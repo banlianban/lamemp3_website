@@ -51,6 +51,7 @@ EXPOSE 3000
 
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
+ENV DEPLOY_WEBHOOK_URL "http://148.230.85.245:3000/api/deploy/8QJwlD67J32DepalrSeLG"
 
 # 启动应用
 CMD ["node", "server.js"]
