@@ -89,9 +89,20 @@
       "junkCleaned": "0KB (已清理)"
     },
     "issues": {
-      "vbr": "❌ 动态码率 VBR (卡顿)",
-      "cover": "❌ 封面 > 1MB (读盘慢)",
-      "codec": "❌ 编码器 Lavc (兼容差)"
+      "vbr": "❌ 动态码率 VBR (可能导致卡顿)",
+      "vbrShort": "❌ 动态码率 VBR (卡顿)",
+      "cover": "❌ 封面图片过大 (读盘慢)",
+      "codec": "❌ 编码器兼容性较差",
+      "codecShort": "❌ 编码器 Lavc (兼容差)",
+      "id3v24": "⚠️ ID3v2.4 标签 (部分老车机不支持)",
+      "nonStandardSampleRate": "⚠️ 非标准采样率",
+      "nonMp3Format": "❌ 非 MP3 格式 (需要转换)",
+      "flacFormat": "ℹ️ 无损格式，建议转换为 MP3",
+      "wavFormat": "ℹ️ 未压缩格式，建议转换为 MP3"
+    },
+    "bitrateTypes": {
+      "vbr": "VBR (可变)",
+      "cbr": "CBR (固定)"
     },
     "solutions": {
       "cbr": "✅ 恒定码率 CBR 320k",

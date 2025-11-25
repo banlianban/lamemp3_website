@@ -27,13 +27,25 @@ export default function Diagnosis({ score, onOptimize, diagnosisResult }: Diagno
     return '#f5222d';
   };
 
+  // 翻译问题列表（支持键值和直接文本）
+  const translateIssue = (issue: string): string => {
+    // 如果是翻译键（以 Diagnosis. 开头），则翻译
+    if (issue.startsWith('Diagnosis.')) {
+      const key = issue.replace('Diagnosis.', '');
+      return t(key as any);
+    }
+    // 否则直接返回（向后兼容）
+    return issue;
+  };
+
   // 使用真实的诊断数据或默认数据
-  const issues = diagnosisResult?.issues || [
-    t('issues.vbr'),
-    t('issues.cover'),
-    t('issues.codec'),
+  const rawIssues = diagnosisResult?.issues || [
+    'Diagnosis.issues.vbrShort',
+    'Diagnosis.issues.cover',
+    'Diagnosis.issues.codecShort',
   ];
 
+  const issues = rawIssues.map(translateIssue);
   const hasIssues = issues.length > 0;
 
   return (
@@ -107,7 +119,11 @@ export default function Diagnosis({ score, onOptimize, diagnosisResult }: Diagno
                    {diagnosisResult.details.bitrateType !== 'Unknown' && (
                      <div>
                        <span className="text-neutral-500">{t('bitrateType')}:</span>
-                       <span className="ml-2 font-medium text-neutral-700">{diagnosisResult.details.bitrateType}</span>
+                       <span className="ml-2 font-medium text-neutral-700">
+                         {diagnosisResult.details.bitrateType === 'VBR' || diagnosisResult.details.bitrateType === 'CBR'
+                           ? t(`bitrateTypes.${diagnosisResult.details.bitrateType.toLowerCase()}`)
+                           : diagnosisResult.details.bitrateType}
+                       </span>
                      </div>
                    )}
                    {diagnosisResult.details.sampleRate !== 'Unknown' && (

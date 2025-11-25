@@ -73,43 +73,43 @@ function analyzeAudioFile(bytes: Uint8Array, fileInfo: any) {
 
     // 评分规则
     // 1. 比特率模式 (VBR vs CBR)
-    if (details.bitrateType === 'VBR' || details.bitrateType.includes('可变')) {
+    if (details.bitrateType === 'VBR' || details.bitrateType.includes('可变') || details.bitrateType.includes('Variable')) {
       score -= 25;
-      issues.push('❌ 动态码率 VBR (可能导致卡顿)');
+      issues.push('Diagnosis.issues.vbr');
     }
 
     // 2. 编码器检测
     if (details.encoder && !details.encoder.includes('LAME')) {
       score -= 20;
-      issues.push('❌ 编码器兼容性较差');
+      issues.push('Diagnosis.issues.codec');
     }
 
     // 3. 封面大小
     if (details.coverSize > 1024 * 1024) { // > 1MB
       score -= 15;
-      issues.push('❌ 封面图片过大 (读盘慢)');
+      issues.push('Diagnosis.issues.cover');
     }
 
     // 4. ID3 版本
     if (details.id3Version === 'v2.4') {
       score -= 10;
-      issues.push('⚠️ ID3v2.4 标签 (部分老车机不支持)');
+      issues.push('Diagnosis.issues.id3v24');
     }
 
     // 5. 采样率
     if (details.sampleRate && details.sampleRate !== '44.1kHz' && details.sampleRate !== '44100 Hz') {
       score -= 10;
-      issues.push('⚠️ 非标准采样率');
+      issues.push('Diagnosis.issues.nonStandardSampleRate');
     }
   } else {
     // 非 MP3 格式，默认需要转换
     score = 40;
-    issues.push('❌ 非 MP3 格式 (需要转换)');
+    issues.push('Diagnosis.issues.nonMp3Format');
     
     if (format === 'FLAC') {
-      issues.push('ℹ️ 无损格式，建议转换为 MP3');
+      issues.push('Diagnosis.issues.flacFormat');
     } else if (format === 'WAV') {
-      issues.push('ℹ️ 未压缩格式，建议转换为 MP3');
+      issues.push('Diagnosis.issues.wavFormat');
     }
   }
 
@@ -266,9 +266,9 @@ function analyzeMp3(bytes: Uint8Array) {
         const vbrBytes = bytes.slice(vbrHeaderOffset, vbrHeaderOffset + 4);
         const vbrTag = String.fromCharCode(vbrBytes[0], vbrBytes[1], vbrBytes[2], vbrBytes[3]);
         if (vbrTag === 'Xing' || vbrTag === 'Info' || vbrTag === 'VBRI') {
-          result.bitrateType = 'VBR (可变)';
+          result.bitrateType = 'VBR';
         } else {
-          result.bitrateType = 'CBR (固定)';
+          result.bitrateType = 'CBR';
         }
       }
 

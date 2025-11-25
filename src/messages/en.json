@@ -89,9 +89,20 @@
       "junkCleaned": "0KB (Cleaned)"
     },
     "issues": {
-      "vbr": "❌ VBR (Laggy)",
-      "cover": "❌ Cover > 1MB (Slow Load)",
-      "codec": "❌ Lavc Codec (Low Compat)"
+      "vbr": "❌ VBR (May Cause Lag)",
+      "vbrShort": "❌ VBR (Laggy)",
+      "cover": "❌ Cover Art Too Large (Slow Load)",
+      "codec": "❌ Encoder Compatibility Poor",
+      "codecShort": "❌ Lavc Codec (Low Compat)",
+      "id3v24": "⚠️ ID3v2.4 Tag (Not Supported by Some Legacy Car Units)",
+      "nonStandardSampleRate": "⚠️ Non-Standard Sample Rate",
+      "nonMp3Format": "❌ Non-MP3 Format (Needs Conversion)",
+      "flacFormat": "ℹ️ Lossless Format, Recommend Converting to MP3",
+      "wavFormat": "ℹ️ Uncompressed Format, Recommend Converting to MP3"
+    },
+    "bitrateTypes": {
+      "vbr": "VBR (Variable)",
+      "cbr": "CBR (Fixed)"
     },
     "solutions": {
       "cbr": "✅ CBR 320k",
