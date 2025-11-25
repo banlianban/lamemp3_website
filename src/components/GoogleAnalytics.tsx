@@ -12,7 +12,7 @@ declare global {
 }
 
 export default function GoogleAnalytics() {
-  const GA_MEASUREMENT_ID = 'G-BMJLXZSDCW';
+  const GA_MEASUREMENT_ID = 'G-VRG80YE6YB';
 
   useEffect(() => {
     console.log('🔍 [GA4] GoogleAnalytics component mounted');
