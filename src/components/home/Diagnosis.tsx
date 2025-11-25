@@ -69,7 +69,7 @@ export default function Diagnosis({ score, onOptimize, diagnosisResult }: Diagno
                <div className={`border rounded-xl p-5 ${score >= 90 ? 'bg-green-50 border-green-100' : 'bg-red-50 border-red-100'}`}>
                  <h4 className={`font-bold mb-3 flex items-center gap-2 text-lg ${score >= 90 ? 'text-green-600' : 'text-red-600'}`}>
                    {score >= 90 ? <CheckCircle2 className="w-5 h-5" /> : <XCircle className="w-5 h-5" />}
-                   {score >= 90 ? '已发现优势' : '已发现问题'}
+                   {score >= 90 ? t('advantagesFound') : t('issuesFound')}
                  </h4>
                  <ul className="space-y-3">
                    {issues.map((issue, index) => (
@@ -84,35 +84,35 @@ export default function Diagnosis({ score, onOptimize, diagnosisResult }: Diagno
                <div className="bg-green-50 border border-green-100 rounded-xl p-5">
                  <h4 className="font-bold text-green-600 mb-3 flex items-center gap-2 text-lg">
                    <CheckCircle2 className="w-5 h-5" />
-                   完美兼容
+                   {t('perfectCompatibility')}
                  </h4>
-                 <p className="text-neutral-600">您的文件已经具有极佳的兼容性！</p>
+                 <p className="text-neutral-600">{t('perfectCompatibilityDesc')}</p>
                </div>
              )}
 
              {diagnosisResult?.details && (
                <div className="bg-neutral-50 border border-neutral-200 rounded-xl p-5">
-                 <h4 className="font-bold text-neutral-700 mb-3 text-sm">文件详情</h4>
+                 <h4 className="font-bold text-neutral-700 mb-3 text-sm">{t('fileDetails')}</h4>
                  <div className="grid grid-cols-2 gap-3 text-xs">
                    <div>
-                     <span className="text-neutral-500">格式:</span>
+                     <span className="text-neutral-500">{t('format')}:</span>
                      <span className="ml-2 font-medium text-neutral-700">{diagnosisResult.details.format}</span>
                    </div>
                    {diagnosisResult.details.bitrate !== 'Unknown' && (
                      <div>
-                       <span className="text-neutral-500">比特率:</span>
+                       <span className="text-neutral-500">{t('bitrate')}:</span>
                        <span className="ml-2 font-medium text-neutral-700">{diagnosisResult.details.bitrate}</span>
                      </div>
                    )}
                    {diagnosisResult.details.bitrateType !== 'Unknown' && (
                      <div>
-                       <span className="text-neutral-500">码率类型:</span>
+                       <span className="text-neutral-500">{t('bitrateType')}:</span>
                        <span className="ml-2 font-medium text-neutral-700">{diagnosisResult.details.bitrateType}</span>
                      </div>
                    )}
                    {diagnosisResult.details.sampleRate !== 'Unknown' && (
                      <div>
-                       <span className="text-neutral-500">采样率:</span>
+                       <span className="text-neutral-500">{t('sampleRate')}:</span>
                        <span className="ml-2 font-medium text-neutral-700">{diagnosisResult.details.sampleRate}</span>
                      </div>
                    )}
@@ -125,7 +125,7 @@ export default function Diagnosis({ score, onOptimize, diagnosisResult }: Diagno
         <div className="border-t border-neutral-100 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4 text-green-700 bg-green-50 px-6 py-3 rounded-xl border border-green-100">
              <CheckCircle2 className="w-5 h-5" />
-             <span className="font-medium">目标: 100% 兼容性</span>
+             <span className="font-medium">{t('targetCompatibility')}</span>
           </div>
           {score < 100 && (
             <Button 

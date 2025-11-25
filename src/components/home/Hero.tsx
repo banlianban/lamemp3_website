@@ -56,7 +56,7 @@ export default function Hero() {
       });
 
       if (!response.ok) {
-        throw new Error('诊断失败');
+        throw new Error(t('dropzone.errors.diagnosisError'));
       }
 
       const result: DiagnosisResult = await response.json();
@@ -67,14 +67,14 @@ export default function Hero() {
       console.log('诊断结果:', result);
     } catch (error) {
       console.error('诊断错误:', error);
-      message.error('文件诊断失败，请重试');
+      message.error(t('dropzone.errors.diagnosisFailed'));
       setStatus('idle');
     }
   };
 
   const handleOptimize = async () => {
     if (!file) {
-      message.error('请先上传文件');
+      message.error(t('dropzone.errors.uploadFirst'));
       return;
     }
 
@@ -93,8 +93,8 @@ export default function Hero() {
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: '转换失败' }));
-        throw new Error(errorData.error || '转换失败');
+        const errorData = await response.json().catch(() => ({ error: t('dropzone.errors.convertError') }));
+        throw new Error(errorData.error || t('dropzone.errors.convertError'));
       }
 
       // 获取文件 blob
@@ -116,10 +116,10 @@ export default function Hero() {
       setConvertedFileName(fileName);
       setScore(100);
       setStatus('completed');
-      message.success('优化完成！文件已准备好下载');
+      message.success(t('dropzone.success.optimizeComplete'));
     } catch (error: any) {
       console.error('转换错误:', error);
-      message.error(error.message || '文件转换失败，请重试');
+      message.error(error.message || t('dropzone.errors.convertFailed'));
       setStatus('diagnosed');
     }
   };
@@ -132,7 +132,7 @@ export default function Hero() {
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      message.success('下载已开始');
+      message.success(t('dropzone.errors.downloadStarted'));
     }
   };
 
@@ -217,7 +217,7 @@ export default function Hero() {
                   <Loader2 className="w-20 h-20 text-blue-600 animate-spin relative z-10" />
                </div>
                <h3 className="text-2xl font-bold text-neutral-900 mb-2">{t('dropzone.diagnosing')}</h3>
-               <p className="text-neutral-500">Analyzing codec, bitrate, and metadata...</p>
+               <p className="text-neutral-500">{t('dropzone.diagnosingDesc')}</p>
              </div>
           )}
 
@@ -233,7 +233,7 @@ export default function Hero() {
                   <FileMusic className="w-10 h-10 text-blue-600 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
                </div>
                <h3 className="text-2xl font-bold text-neutral-900 animate-pulse">{t('dropzone.converting')}</h3>
-               <p className="text-neutral-500 mt-2">Re-encoding with LAME 3.100...</p>
+               <p className="text-neutral-500 mt-2">{t('dropzone.convertingDesc')}</p>
              </div>
           )}
 
@@ -243,8 +243,8 @@ export default function Hero() {
                  <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-8 border border-green-100">
                    <CheckCircle className="w-12 h-12 text-green-600" />
                  </div>
-                 <h3 className="text-3xl font-bold text-neutral-900 mb-4">优化成功！</h3>
-                 <p className="text-neutral-500 text-lg mb-10">您的文件现在 100% 兼容车载音响系统</p>
+                 <h3 className="text-3xl font-bold text-neutral-900 mb-4">{t('dropzone.completed.title')}</h3>
+                 <p className="text-neutral-500 text-lg mb-10">{t('dropzone.completed.desc')}</p>
                  <Button 
                    type="primary" 
                    size="large" 
@@ -252,11 +252,11 @@ export default function Hero() {
                    onClick={handleDownload}
                    className="h-16 px-12 text-lg font-bold bg-green-600 hover:bg-green-500 border-0 rounded-full"
                  >
-                   下载 MP3
+                   {t('dropzone.completed.download')}
                  </Button>
                </div>
                <Button type="text" onClick={handleReset} className="mt-6 text-neutral-500 hover:text-neutral-900">
-                 处理另一个文件
+                 {t('dropzone.completed.another')}
                </Button>
             </div>
           )}

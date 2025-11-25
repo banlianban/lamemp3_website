@@ -19,7 +19,26 @@
       "privacy": "Privacy: Files deleted after processing",
       "button": "Upload Files",
       "diagnosing": "Diagnosing compatibility...",
-      "converting": "Optimizing..."
+      "diagnosingDesc": "Analyzing codec, bitrate, and metadata...",
+      "converting": "Optimizing...",
+      "convertingDesc": "Re-encoding with LAME 3.100...",
+      "completed": {
+        "title": "Optimization Complete!",
+        "desc": "Your file is now 100% compatible with car audio systems",
+        "download": "Download MP3",
+        "another": "Process Another File"
+      },
+      "errors": {
+        "diagnosisFailed": "File diagnosis failed, please try again",
+        "diagnosisError": "Diagnosis failed",
+        "uploadFirst": "Please upload a file first",
+        "convertFailed": "File conversion failed, please try again",
+        "convertError": "Conversion failed",
+        "downloadStarted": "Download started"
+      },
+      "success": {
+        "optimizeComplete": "Optimization complete! File is ready to download"
+      }
     }
   },
   "Diagnosis": {
@@ -30,6 +49,16 @@
     "optimizeBtn": "Optimize to 100 Score",
     "techSpecs": "Tech Specs",
     "subtitle": "Modern audio files (like FLAC or high-res MP3s) often contain complex metadata and variable bitrates that choke legacy car systems. We fix this by standardizing the stream.",
+    "issuesFound": "Issues Found",
+    "advantagesFound": "Advantages Found",
+    "perfectCompatibility": "Perfect Compatibility",
+    "perfectCompatibilityDesc": "Your file already has excellent compatibility!",
+    "fileDetails": "File Details",
+    "format": "Format",
+    "bitrate": "Bitrate",
+    "bitrateType": "Bitrate Type",
+    "sampleRate": "Sample Rate",
+    "targetCompatibility": "Target: 100% Compatibility",
     "smartDiagnosis": {
       "title": "AI Smart Diagnosis",
       "desc": "Instantly identify compatibility killers like VBR, huge covers, and non-standard headers before you even start converting."

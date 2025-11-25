@@ -19,7 +19,26 @@
       "privacy": "隐私保护：处理后自动删除",
       "button": "上传文件",
       "diagnosing": "正在进行全车机兼容性体检...",
-      "converting": "正在优化转换中..."
+      "diagnosingDesc": "正在分析编码格式、比特率和元数据...",
+      "converting": "正在优化转换中...",
+      "convertingDesc": "使用 LAME 3.100 重新编码中...",
+      "completed": {
+        "title": "优化成功！",
+        "desc": "您的文件现在 100% 兼容车载音响系统",
+        "download": "下载 MP3",
+        "another": "处理另一个文件"
+      },
+      "errors": {
+        "diagnosisFailed": "文件诊断失败，请重试",
+        "diagnosisError": "诊断失败",
+        "uploadFirst": "请先上传文件",
+        "convertFailed": "文件转换失败，请重试",
+        "convertError": "转换失败",
+        "downloadStarted": "下载已开始"
+      },
+      "success": {
+        "optimizeComplete": "优化完成！文件已准备好下载"
+      }
     }
   },
   "Diagnosis": {
@@ -30,6 +49,16 @@
     "optimizeBtn": "一键优化至 100 分 (完美适配)",
     "techSpecs": "技术规格",
     "subtitle": "现代音频文件（如 FLAC 或高分辨率 MP3）通常包含复杂的元数据和可变比特率，这会导致老式车载系统无法正常播放。我们通过标准化音频流来解决这个问题。",
+    "issuesFound": "已发现问题",
+    "advantagesFound": "已发现优势",
+    "perfectCompatibility": "完美兼容",
+    "perfectCompatibilityDesc": "您的文件已经具有极佳的兼容性！",
+    "fileDetails": "文件详情",
+    "format": "格式",
+    "bitrate": "比特率",
+    "bitrateType": "码率类型",
+    "sampleRate": "采样率",
+    "targetCompatibility": "目标: 100% 兼容性",
     "smartDiagnosis": {
       "title": "AI 智能诊断",
       "desc": "在您开始转换之前，立即识别兼容性杀手，如 VBR、巨大的封面和非标准头信息。"
