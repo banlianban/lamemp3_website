@@ -1,0 +1,25 @@
+react-dom.development.js:38560 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+VM1035:2 🚀 [GA4] Initializing dataLayer and gtag...
+VM1035:6 🚀 [GA4] Configuring GA with ID: G-BMJLXZSDCW
+VM1035:10 ✅ [GA4] GA configured successfully for path: /
+GoogleAnalytics.tsx:18 🔍 [GA4] GoogleAnalytics component mounted
+GoogleAnalytics.tsx:19 🔍 [GA4] Measurement ID: G-BMJLXZSDCW
+GoogleAnalytics.tsx:20 🔍 [GA4] Current path: /
+ultraHDRLoader.ts:33 [UltraHDR] 开始加载 WASM 模块...
+GoogleAnalytics.tsx:18 🔍 [GA4] GoogleAnalytics component mounted
+GoogleAnalytics.tsx:19 🔍 [GA4] Measurement ID: G-BMJLXZSDCW
+GoogleAnalytics.tsx:20 🔍 [GA4] Current path: /
+GoogleAnalytics.tsx:29 ✅ [GA4] gtag.js script loaded successfully
+ultraHDRLoader.ts:45 [UltraHDR] 模块脚本加载成功，开始初始化...
+ultraHDRLoader.ts:57 [UltraHDR] WASM 模块加载成功，版本: UltraHDR WASM v1.0.0 (libultrahdr)
+Hero.tsx:40 ✅ UltraHDR WASM 已就绪，版本: UltraHDR WASM v1.0.0 (libultrahdr)
+Hero.tsx:43 可用的方法： Array(10)
+Hero.tsx:40 ✅ UltraHDR WASM 已就绪，版本: UltraHDR WASM v1.0.0 (libultrahdr)
+Hero.tsx:43 可用的方法： Array(10)
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+（索引）:1 Error while trying to use the following icon from the Manifest: http://localhost:3000/android-chrome-192x192.png (Download error or resource isn't a valid image)
+hot-reloader-client.js:44 [Fast Refresh] done in 371ms
+:3000/favicon.ico:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+:3000/favicon.ico:1  Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+hot-reloader-client.js:44 [Fast Refresh] done in 91ms

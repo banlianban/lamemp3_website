@@ -1,0 +1,26 @@
+# 开发环境 Dockerfile
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# 安装依赖
+RUN apk add --no-cache libc6-compat
+
+# 复制 package 文件
+COPY package.json package-lock.json* ./
+
+# 安装依赖
+RUN npm ci
+
+# 复制项目文件
+COPY . .
+
+EXPOSE 3000
+
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+# 开发模式启动
+CMD ["npm", "run", "dev"]
+

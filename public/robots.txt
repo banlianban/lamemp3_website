@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lamemp3.com
+
+# Sitemaps
+Sitemap: https://lamemp3.com/sitemap.xml
+

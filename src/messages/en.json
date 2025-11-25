@@ -1,0 +1,156 @@
+{
+  "Metadata": {
+    "title": "LameMP3 - Car MP3 Converter & Compatibility Diagnostic Tool",
+    "description": "Optimized for legacy car units and USB players. Fix 'Playback Error', 'Reading Error', and 'Mojibake' issues with one click. Supports FLAC, WAV, APE, M4A to high-compatibility MP3."
+  },
+  "Navigation": {
+    "diagnosis": "Compatibility Check",
+    "features": "Key Features",
+    "carSupport": "Compatible Devices",
+    "faq": "FAQ"
+  },
+  "Hero": {
+    "tagline": "Universal Car Audio Compatibility Solution",
+    "title": "Car MP3 Converter & Compatibility Diagnostic Tool",
+    "subtitle": "Optimized for legacy car units and USB players. Fix 'Playback Error', 'Reading Error', and 'Mojibake' issues with one click.",
+    "dropzone": {
+      "main": "Drop files here or click to upload",
+      "sub": "Supports FLAC, WAV, APE, M4A, AAC to high-compatibility MP3",
+      "privacy": "Privacy: Files deleted after processing",
+      "button": "Upload Files",
+      "diagnosing": "Diagnosing compatibility...",
+      "converting": "Optimizing..."
+    }
+  },
+  "Diagnosis": {
+    "title": "Why your songs won't play in the car?",
+    "score": "Current Score",
+    "risk": "High Risk",
+    "perfect": "Perfect Match",
+    "optimizeBtn": "Optimize to 100 Score",
+    "techSpecs": "Tech Specs",
+    "subtitle": "Modern audio files (like FLAC or high-res MP3s) often contain complex metadata and variable bitrates that choke legacy car systems. We fix this by standardizing the stream.",
+    "smartDiagnosis": {
+      "title": "AI Smart Diagnosis",
+      "desc": "Instantly identify compatibility killers like VBR, huge covers, and non-standard headers before you even start converting."
+    },
+    "demo": {
+      "before": "Before",
+      "after": "After",
+      "bitrate": "Bitrate",
+      "vbr": "VBR (Variable)",
+      "cbr": "CBR 320kbps",
+      "cover": "Cover Art",
+      "coverLarge": "2.4 MB (Too Large)",
+      "coverOptimized": "500 KB (Optimized)",
+      "tag": "ID3 Tag",
+      "tagUnsupported": "v2.4 (Unsupported)",
+      "tagStandard": "v2.3 (Standard)",
+      "encoding": "Encoding",
+      "encodingUnknown": "Unknown Encoder",
+      "encodingLame": "LAME 3.100",
+      "sampleRate": "Sample Rate",
+      "sampleRateResampled": "48kHz (Resampled)",
+      "sampleRateStandard": "44.1kHz (Standard)",
+      "channels": "Channels",
+      "channelsStereo": "Stereo (Redundant)",
+      "channelsJoint": "Joint Stereo",
+      "junk": "Junk Data",
+      "junkPresent": "150KB (Wasted)",
+      "junkCleaned": "0KB (Cleaned)"
+    },
+    "issues": {
+      "vbr": "❌ VBR (Laggy)",
+      "cover": "❌ Cover > 1MB (Slow Load)",
+      "codec": "❌ Lavc Codec (Low Compat)"
+    },
+    "solutions": {
+      "cbr": "✅ CBR 320k",
+      "lame": "✅ LAME Encoder",
+      "id3": "✅ Clean ID3 Tags"
+    }
+  },
+  "Features": {
+    "title": "Key Features",
+    "subtitle": "Engineered for audiophiles and legacy hardware alike.",
+    "list": [
+      { "title": "Smart Scoring System", "desc": "0-100 checkup based on 7 dimensions (codec, sample rate, bitrate, headers, etc.)." },
+      { "title": "Extreme Compatibility", "desc": "Forces LAME encoder and CBR mode, adapting to 10-year-old VW, Toyota, Honda and various Android/WinCE units." },
+      { "title": "Tag & Cover Cleaner", "desc": "Compresses covers to under 500KB, fixes GBK/UTF-8 encoding issues for proper display." }
+    ]
+  },
+  "CarSupport": {
+    "title": "Supports 99% of Car Models & Devices",
+    "list": [
+      "VW",
+      "Toyota",
+      "Honda",
+      "BMW (CIC/NBT)",
+      "Mercedes",
+      "Audi (MMI)",
+      "Sony",
+      "Pioneer",
+      "Kenwood",
+      "Ford",
+      "Chevrolet",
+      "Hyundai",
+      "Kia",
+      "Mazda",
+      "Nissan",
+      "Subaru",
+      "Jeep",
+      "Dodge",
+      "Volvo",
+      "Land Rover",
+      "Jaguar",
+      "Porsche",
+      "Lexus",
+      "Infiniti",
+      "Acura",
+      "Legacy MP3 Players",
+      "Portable Speakers",
+      "Old Radios"
+    ],
+    "more": "And many more aftermarket head units from Alpine, Clarion, JVC..."
+  },
+  "HowItWorks": {
+    "title": "How It Works",
+    "subtitle": "Powered by AI, 7 dimensions. Intelligent scoring and processing",
+    "steps": [
+      { "title": "1. Upload", "desc": "Auto-detects 50+ audio formats." },
+      { "title": "2. Diagnose", "desc": "Deep scan for file integrity and codec standards." },
+      { "title": "3. Remaster", "desc": "Re-encode using LAME 3.100+, standardizing sample rate and channels." },
+      { "title": "4. Download", "desc": "Get 100% car-compatible MP3 files." }
+    ]
+  },
+  "Testimonials": {
+    "title": "User Reviews",
+    "list": [
+      { "content": "My 2012 Camry finally reads songs from USB!", "author": "John M.", "role": "Toyota Camry Owner" },
+      { "content": "FLAC files weren't recognized, converted with this and quality is great, lyrics show up too.", "author": "Sarah K.", "role": "VW Tiguan Owner" },
+      { "content": "Fixed the mojibake lyrics issue on my BMW NBT unit perfectly!", "author": "Mike W.", "role": "BMW 3-Series Owner" },
+      { "content": "My old Ford CD player kept skipping, but these MP3s play smoothly.", "author": "David L.", "role": "Ford Focus Owner" },
+      { "content": "Surprised my ancient Sony head unit supports these files. Thanks!", "author": "Lisa C.", "role": "Sony Aftermarket User" },
+      { "content": "Batch conversion is fast. Processed thousands of songs and all play in the car.", "author": "James Z.", "role": "Honda Accord Owner" },
+      { "content": "No more USB read errors on my Audi! This tool is amazing.", "author": "Emily R.", "role": "Audi A4 Owner" },
+      { "content": "Even my dad's old radio can play these files now. Great compatibility!", "author": "Tom H.", "role": "MP3 Player User" }
+    ]
+  },
+  "FAQ": {
+    "title": "FAQ",
+    "list": [
+      { "q": "Why does my car say 'Read Error' or skip songs?", "a": "Likely due to VBR bitrate or large cover art (>1MB). Our tool fixes this." },
+      { "q": "Will audio quality degrade?", "a": "We use LAME, the best MP3 encoder, with up to 320kbps CBR, ensuring highest quality and compatibility." },
+      { "q": "Do you support batch conversion?", "a": "Yes, you can upload a whole folder." },
+      { "q": "Why CBR instead of VBR?", "a": "While VBR offers better quality and smaller file sizes, many legacy car systems can't parse VBR correctly, causing progress bar issues or playback skips. CBR ensures maximum compatibility." },
+      { "q": "Will converted files play on all car systems?", "a": "Our tool generates MP3 files following the strictest standards, compatible with 99% of car audio systems, including most factory and aftermarket units from 2000 onwards." },
+      { "q": "Do you store my uploaded files?", "a": "No. All files are processed locally in your browser and not uploaded to any server. Temporary files are automatically deleted after processing, ensuring complete privacy." }
+    ]
+  },
+  "Footer": {
+    "links": "Related Links",
+    "privacy": "Privacy Policy",
+    "sitemap": "Sitemap",
+    "copyright": "© 2025 LameMP3.com All rights reserved."
+  }
+}

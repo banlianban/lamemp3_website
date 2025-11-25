@@ -1,0 +1,23 @@
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.scroll-container {
+  animation: scroll-vertical 15s linear infinite;
+}
+
+.scroll-container:hover {
+  animation-play-state: paused;
+}
+
+
+
+
+
+
+

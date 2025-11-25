@@ -1,0 +1,156 @@
+{
+  "Metadata": {
+    "title": "LameMP3 - 车载MP3专用转换器 & 兼容性诊断工具",
+    "description": "专为老旧车机、USB播放器优化。一键修复'无法播放'、'读盘错误'、'乱码'问题。支持FLAC, WAV, APE, M4A转高兼容MP3。"
+  },
+  "Navigation": {
+    "diagnosis": "兼容性检测",
+    "features": "核心优势",
+    "carSupport": "兼容设备",
+    "faq": "常见问题"
+  },
+  "Hero": {
+    "tagline": "车载音响通用兼容性解决方案",
+    "title": "车载 MP3 专用转换器 & 兼容性诊断工具",
+    "subtitle": "专为老旧车机、USB 播放器优化。一键修复'无法播放'、'读盘错误'、'乱码'问题。",
+    "dropzone": {
+      "main": "拖拽文件到这里 或 点击上传",
+      "sub": "支持 FLAC, WAV, APE, M4A, AAC 等无损转高兼容 MP3",
+      "privacy": "隐私保护：处理后自动删除",
+      "button": "上传文件",
+      "diagnosing": "正在进行全车机兼容性体检...",
+      "converting": "正在优化转换中..."
+    }
+  },
+  "Diagnosis": {
+    "title": "为什么你的歌在车里放不出来？",
+    "score": "当前评分",
+    "risk": "高风险",
+    "perfect": "完美适配",
+    "optimizeBtn": "一键优化至 100 分 (完美适配)",
+    "techSpecs": "技术规格",
+    "subtitle": "现代音频文件（如 FLAC 或高分辨率 MP3）通常包含复杂的元数据和可变比特率，这会导致老式车载系统卡顿。我们通过标准化流媒体来解决这个问题。",
+    "smartDiagnosis": {
+      "title": "AI 智能诊断",
+      "desc": "在您开始转换之前，立即识别兼容性杀手，如 VBR、巨大的封面和非标准头信息。"
+    },
+    "demo": {
+      "before": "优化前",
+      "after": "优化后",
+      "bitrate": "比特率",
+      "vbr": "VBR (可变)",
+      "cbr": "CBR 320kbps",
+      "cover": "封面",
+      "coverLarge": "2.4 MB (过大)",
+      "coverOptimized": "500 KB (已优化)",
+      "tag": "ID3 标签",
+      "tagUnsupported": "v2.4 (不支持)",
+      "tagStandard": "v2.3 (标准)",
+      "encoding": "编码格式",
+      "encodingUnknown": "未知编码器",
+      "encodingLame": "LAME 3.100",
+      "sampleRate": "采样率",
+      "sampleRateResampled": "48kHz (重采样)",
+      "sampleRateStandard": "44.1kHz (标准)",
+      "channels": "声道模式",
+      "channelsStereo": "Stereo (冗余)",
+      "channelsJoint": "Joint Stereo",
+      "junk": "垃圾数据",
+      "junkPresent": "150KB (占用)",
+      "junkCleaned": "0KB (已清理)"
+    },
+    "issues": {
+      "vbr": "❌ 动态码率 VBR (卡顿)",
+      "cover": "❌ 封面 > 1MB (读盘慢)",
+      "codec": "❌ 编码器 Lavc (兼容差)"
+    },
+    "solutions": {
+      "cbr": "✅ 恒定码率 CBR 320k",
+      "lame": "✅ 标准 LAME 编码",
+      "id3": "✅ 纯净 ID3 标签"
+    }
+  },
+  "Features": {
+    "title": "核心优势",
+    "subtitle": "为发烧友和老式硬件量身打造。",
+    "list": [
+      { "title": "智能车机评分系统", "desc": "基于 7 大维度（编码、采样率、比特率、头信息等）进行 0-100 分体检。" },
+      { "title": "极致兼容模式", "desc": "强制使用 LAME 编码器和 CBR 模式，适配 10 年前的老款大众、丰田、本田及各类后装安卓/WinCE 车机。" },
+      { "title": "标签与封面清洗", "desc": "自动压缩封面图片至 500KB 以内，修复 GBK/UTF-8 乱码，确保中控屏显示正常。" }
+    ]
+  },
+  "CarSupport": {
+    "title": "完美适配 99% 的车型与设备",
+    "list": [
+      "大众",
+      "丰田",
+      "本田",
+      "宝马 (CIC/NBT)",
+      "奔驰",
+      "奥迪 (MMI)",
+      "索尼 (Sony)",
+      "先锋 (Pioneer)",
+      "建伍 (Kenwood)",
+      "福特 (Ford)",
+      "雪佛兰 (Chevrolet)",
+      "现代 (Hyundai)",
+      "起亚 (Kia)",
+      "马自达 (Mazda)",
+      "日产 (Nissan)",
+      "斯巴鲁 (Subaru)",
+      "吉普 (Jeep)",
+      "道奇 (Dodge)",
+      "沃尔沃 (Volvo)",
+      "路虎 (Land Rover)",
+      "捷豹 (Jaguar)",
+      "保时捷 (Porsche)",
+      "雷克萨斯 (Lexus)",
+      "英菲尼迪 (Infiniti)",
+      "讴歌 (Acura)",
+      "老式 MP3 播放器",
+      "广场舞音响",
+      "老年收音机"
+    ],
+    "more": "还有更多来自 Alpine, Clarion, JVC 等品牌的后装车机..."
+  },
+  "HowItWorks": {
+    "title": "工作原理",
+    "subtitle": "基于强大AI，7 大维度。智能评分处理",
+    "steps": [
+      { "title": "1. 上传", "desc": "自动识别 50+ 种音频格式。" },
+      { "title": "2. 诊断", "desc": "运行深度扫描，检测文件完整性与编码规范。" },
+      { "title": "3. 重制", "desc": "使用 LAME 3.100+ 重新编码，标准化采样率与声道。" },
+      { "title": "4. 下载", "desc": "获得车机 100% 兼容的 MP3 文件。" }
+    ]
+  },
+  "Testimonials": {
+    "title": "用户评价",
+    "list": [
+      { "content": "我的 2012 款凯美瑞终于能读出 USB 里的歌了！", "author": "李先生", "role": "丰田凯美瑞车主" },
+      { "content": "之前下载的无损 FLAC 车机不认，用这个转完音质几乎没损失，还能显示歌词。", "author": "张女士", "role": "大众途观车主" },
+      { "content": "完美解决了宝马 NBT 主机歌词乱码的问题，强烈推荐！", "author": "王先生", "role": "宝马 3系车主" },
+      { "content": "老福克斯的 CD 机读碟总出错，刻录成这个格式的 MP3 就很顺畅。", "author": "刘先生", "role": "福特福克斯车主" },
+      { "content": "没想到这么老的索尼车机也能支持，太感谢了。", "author": "陈女士", "role": "索尼后装车机用户" },
+      { "content": "批量转换速度很快，整理了几千首歌，全部能在车上播放。", "author": "赵先生", "role": "本田雅阁车主" },
+      { "content": "终于不用担心 U 盘在车上读不出来了，工具太好用了！", "author": "周女士", "role": "奥迪 A4 车主" },
+      { "content": "老爸的收音机也能播放了，转换后的文件通用性真强。", "author": "杨先生", "role": "MP3 播放器用户" }
+    ]
+  },
+  "FAQ": {
+    "title": "常见问题",
+    "list": [
+      { "q": "为什么我的车机显示'读取错误'或直接跳过歌曲？", "a": "可能是因为文件采用了 VBR 动态码率或封面图片过大（超过 1MB）。我们的工具可以一键修复。" },
+      { "q": "转换后的音质会变差吗？", "a": "我们使用业界公认最好的 MP3 编码器 LAME，并支持最高 320kbps CBR，在保证兼容性的同时提供最高音质。" },
+      { "q": "支持批量转换吗？", "a": "支持，您可以一次性上传整个文件夹进行处理。" },
+      { "q": "为什么要使用 CBR 而不是 VBR？", "a": "虽然 VBR 可以提供更好的音质和更小的文件体积，但许多老式车机无法正确解析 VBR 文件，导致进度条显示错误或跳过播放。CBR 能确保最大兼容性。" },
+      { "q": "转换后的文件可以在所有车机上播放吗？", "a": "我们的工具生成的 MP3 文件遵循最严格的标准，兼容 99% 的车载系统，包括 2000 年后的大部分原厂和后装车机。" },
+      { "q": "你们会保存我上传的文件吗？", "a": "不会。所有文件在浏览器本地处理，不会上传到服务器。处理完成后，临时文件会自动删除，完全保护您的隐私。" }
+    ]
+  },
+  "Footer": {
+    "links": "相关链接",
+    "privacy": "隐私协议",
+    "sitemap": "网站地图",
+    "copyright": "© 2025 LameMP3.com 保留所有权利。"
+  }
+}
