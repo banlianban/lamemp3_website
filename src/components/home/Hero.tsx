@@ -9,43 +9,145 @@ import Diagnosis from './Diagnosis';
 
 const { Dragger } = AntUpload;
 
+interface DiagnosisResult {
+  score: number;
+  issues: string[];
+  details: any;
+  needsConversion: boolean;
+  riskLevel: string;
+}
+
 export default function Hero() {
   const t = useTranslations('Hero');
-  const [file, setFile] = useState<UploadFile | null>(null);
+  const [file, setFile] = useState<File | null>(null);
   const [status, setStatus] = useState<'idle' | 'diagnosing' | 'diagnosed' | 'converting' | 'completed'>('idle');
   const [score, setScore] = useState(0);
+  const [diagnosisResult, setDiagnosisResult] = useState<DiagnosisResult | null>(null);
+  const [convertedFileUrl, setConvertedFileUrl] = useState<string | null>(null);
+  const [convertedFileName, setConvertedFileName] = useState<string>('');
 
   const handleUpload = (info: any) => {
     const { status } = info.file;
     if (status !== 'uploading') {
-      setFile(info.file);
+      setFile(info.file.originFileObj);
     }
     if (status === 'done') {
-      startDiagnosis();
+      startDiagnosis(info.file.originFileObj);
     }
   };
 
-  const customRequest = ({ file, onSuccess }: any) => {
+  const customRequest = ({ file, onSuccess, onError }: any) => {
+    // 直接标记为成功，实际上传在诊断时进行
     setTimeout(() => {
       onSuccess("ok");
-    }, 1000);
+    }, 100);
   };
 
-  const startDiagnosis = () => {
+  const startDiagnosis = async (uploadedFile: File) => {
     setStatus('diagnosing');
-    setTimeout(() => {
-      setScore(45);
+    
+    try {
+      const formData = new FormData();
+      formData.append('audio_file', uploadedFile);
+
+      const response = await fetch('/api/diagnose', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error('诊断失败');
+      }
+
+      const result: DiagnosisResult = await response.json();
+      setScore(result.score);
+      setDiagnosisResult(result);
       setStatus('diagnosed');
-    }, 2000);
+      
+      console.log('诊断结果:', result);
+    } catch (error) {
+      console.error('诊断错误:', error);
+      message.error('文件诊断失败，请重试');
+      setStatus('idle');
+    }
   };
 
-  const handleOptimize = () => {
+  const handleOptimize = async () => {
+    if (!file) {
+      message.error('请先上传文件');
+      return;
+    }
+
     setStatus('converting');
-    setTimeout(() => {
+    
+    try {
+      const formData = new FormData();
+      formData.append('audio_file', file);
+      formData.append('mode', 'vbr');
+      formData.append('quality', '2');
+      formData.append('force_convert', 'on'); // 强制重新编码以确保兼容性
+
+      const response = await fetch('/api/convert', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: '转换失败' }));
+        throw new Error(errorData.error || '转换失败');
+      }
+
+      // 获取文件 blob
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      
+      // 从响应头获取文件名或使用默认名称
+      const contentDisposition = response.headers.get('Content-Disposition');
+      let fileName = `${file.name.replace(/\.[^/.]+$/, '')}_converted.mp3`;
+      
+      if (contentDisposition) {
+        const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(contentDisposition);
+        if (matches != null && matches[1]) {
+          fileName = decodeURIComponent(matches[1].replace(/['"]/g, ''));
+        }
+      }
+
+      setConvertedFileUrl(url);
+      setConvertedFileName(fileName);
       setScore(100);
       setStatus('completed');
-      message.success('Optimization complete!');
-    }, 3000);
+      message.success('优化完成！文件已准备好下载');
+    } catch (error: any) {
+      console.error('转换错误:', error);
+      message.error(error.message || '文件转换失败，请重试');
+      setStatus('diagnosed');
+    }
+  };
+
+  const handleDownload = () => {
+    if (convertedFileUrl && convertedFileName) {
+      const link = document.createElement('a');
+      link.href = convertedFileUrl;
+      link.download = convertedFileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      message.success('下载已开始');
+    }
+  };
+
+  const handleReset = () => {
+    setStatus('idle');
+    setFile(null);
+    setScore(0);
+    setDiagnosisResult(null);
+    
+    // 清理 blob URL
+    if (convertedFileUrl) {
+      URL.revokeObjectURL(convertedFileUrl);
+      setConvertedFileUrl(null);
+    }
+    setConvertedFileName('');
   };
 
   const props: UploadProps = {
@@ -120,7 +222,7 @@ export default function Hero() {
           )}
 
           {status === 'diagnosed' && (
-            <Diagnosis score={score} onOptimize={handleOptimize} />
+            <Diagnosis score={score} onOptimize={handleOptimize} diagnosisResult={diagnosisResult} />
           )}
 
           {status === 'converting' && (
@@ -141,19 +243,20 @@ export default function Hero() {
                  <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-8 border border-green-100">
                    <CheckCircle className="w-12 h-12 text-green-600" />
                  </div>
-                 <h3 className="text-3xl font-bold text-neutral-900 mb-4">Optimization Successful!</h3>
-                 <p className="text-neutral-500 text-lg mb-10">Your file is now 100% compatible with car stereos.</p>
+                 <h3 className="text-3xl font-bold text-neutral-900 mb-4">优化成功！</h3>
+                 <p className="text-neutral-500 text-lg mb-10">您的文件现在 100% 兼容车载音响系统</p>
                  <Button 
                    type="primary" 
                    size="large" 
                    icon={<Download className="w-5 h-5" />}
+                   onClick={handleDownload}
                    className="h-16 px-12 text-lg font-bold bg-green-600 hover:bg-green-500 border-0 rounded-full"
                  >
-                   Download MP3
+                   下载 MP3
                  </Button>
                </div>
-               <Button type="text" onClick={() => { setStatus('idle'); setFile(null); }} className="mt-6 text-neutral-500 hover:text-neutral-900">
-                 Process another file
+               <Button type="text" onClick={handleReset} className="mt-6 text-neutral-500 hover:text-neutral-900">
+                 处理另一个文件
                </Button>
             </div>
           )}
