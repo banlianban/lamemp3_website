@@ -83,8 +83,8 @@ export default function Hero() {
     try {
       const formData = new FormData();
       formData.append('audio_file', file);
-      formData.append('mode', 'vbr');
-      formData.append('quality', '2');
+      formData.append('mode', 'cbr');
+      formData.append('bitrate', '128');
       formData.append('force_convert', 'on'); // 强制重新编码以确保兼容性
 
       const response = await fetch('/api/convert', {

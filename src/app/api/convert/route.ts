@@ -65,17 +65,14 @@ export async function POST(request: NextRequest) {
     apiFormData.append('audio_file', file);
     
     // 获取转换参数（如果有）
-    const mode = formData.get('mode') || 'vbr';
+    const mode = formData.get('mode') || 'cbr';
     const quality = formData.get('quality') || '2';
-    const bitrate = formData.get('bitrate');
+    const bitrate = formData.get('bitrate') || '128';
     const forceConvert = formData.get('force_convert');
 
     apiFormData.append('mode', mode as string);
     apiFormData.append('quality', quality as string);
-    
-    if (bitrate) {
-      apiFormData.append('bitrate', bitrate as string);
-    }
+    apiFormData.append('bitrate', bitrate as string);
     
     if (forceConvert === 'on' || forceConvert === 'true') {
       apiFormData.append('force_convert', 'on');
