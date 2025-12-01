@@ -82,11 +82,6 @@ export async function generateMetadata({ params: { locale } }: { params: { local
         'max-snippet': -1,
       },
     },
-    icons: {
-      icon: '/favicon.ico',
-      shortcut: '/favicon.ico',
-      apple: '/apple-touch-icon.png',
-    },
     manifest: '/site.webmanifest',
     alternates: {
       canonical: currentUrl,
