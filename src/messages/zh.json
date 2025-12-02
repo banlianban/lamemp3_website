@@ -47,6 +47,8 @@
     "risk": "高风险",
     "perfect": "完美适配",
     "optimizeBtn": "一键优化至 100 分 (完美适配)",
+    "continueProcessing": "继续处理",
+    "selectNewFile": "选择新文件",
     "techSpecs": "技术规格",
     "subtitle": "现代音频文件（如 FLAC 或高分辨率 MP3）通常包含复杂的元数据和可变比特率，这会导致老式车载系统无法正常播放。我们通过标准化音频流来解决这个问题。",
     "issuesFound": "已发现问题",

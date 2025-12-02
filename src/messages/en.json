@@ -47,6 +47,8 @@
     "risk": "High Risk",
     "perfect": "Perfect Match",
     "optimizeBtn": "Optimize to 100 Score",
+    "continueProcessing": "Continue Processing",
+    "selectNewFile": "Select New File",
     "techSpecs": "Tech Specs",
     "subtitle": "Modern audio files (like FLAC or high-res MP3s) often contain complex metadata and variable bitrates that choke legacy car systems. We fix this by standardizing the stream.",
     "issuesFound": "Issues Found",

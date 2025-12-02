@@ -15,10 +15,11 @@ interface DiagnosisResult {
 interface DiagnosisProps {
   score: number;
   onOptimize: () => void;
+  onReset?: () => void;
   diagnosisResult?: DiagnosisResult | null;
 }
 
-export default function Diagnosis({ score, onOptimize, diagnosisResult }: DiagnosisProps) {
+export default function Diagnosis({ score, onOptimize, onReset, diagnosisResult }: DiagnosisProps) {
   const t = useTranslations('Diagnosis');
 
   const getScoreColor = (s: number) => {
@@ -143,7 +144,7 @@ export default function Diagnosis({ score, onOptimize, diagnosisResult }: Diagno
              <CheckCircle2 className="w-5 h-5" />
              <span className="font-medium">{t('targetCompatibility')}</span>
           </div>
-          {score < 100 && (
+          {score < 100 ? (
             <Button 
               type="primary" 
               size="large" 
@@ -154,6 +155,27 @@ export default function Diagnosis({ score, onOptimize, diagnosisResult }: Diagno
               {t('optimizeBtn')}
               <ArrowRight className="w-5 h-5" />
             </Button>
+          ) : (
+            <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+              {onReset && (
+                <Button
+                  size="large"
+                  onClick={onReset}
+                  className="h-14 px-8 text-lg font-medium text-neutral-600 hover:text-neutral-900 border-neutral-200 hover:border-neutral-400 rounded-full flex items-center gap-2 justify-center"
+                >
+                  {t('selectNewFile')}
+                </Button>
+              )}
+              <Button
+                type="primary"
+                size="large"
+                onClick={onOptimize}
+                className="h-14 px-8 text-lg font-bold bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 border-0 rounded-full flex items-center gap-2 justify-center"
+              >
+                {t('continueProcessing')}
+                <ArrowRight className="w-5 h-5" />
+              </Button>
+            </div>
           )}
         </div>
       </div>

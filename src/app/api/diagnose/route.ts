@@ -261,12 +261,27 @@ function analyzeMp3(bytes: Uint8Array) {
       }
 
       // 检测 VBR（查找 Xing 或 VBRI 头）
-      const vbrHeaderOffset = frameStart + 36; // 简化的偏移
+      // Calculate VBR header offset based on MPEG version and channel mode
+      // MPEG 1: Mono (+21), Stereo/Joint/Dual (+36)
+      // MPEG 2/2.5: Mono (+13), Stereo/Joint/Dual (+21)
+      let offset = 36;
+      if (version === 3) { // MPEG 1
+        offset = channelMode === 3 ? 21 : 36;
+      } else { // MPEG 2/2.5
+        offset = channelMode === 3 ? 13 : 21;
+      }
+
+      const vbrHeaderOffset = frameStart + offset;
       if (vbrHeaderOffset + 4 < bytes.length) {
         const vbrBytes = bytes.slice(vbrHeaderOffset, vbrHeaderOffset + 4);
         const vbrTag = String.fromCharCode(vbrBytes[0], vbrBytes[1], vbrBytes[2], vbrBytes[3]);
-        if (vbrTag === 'Xing' || vbrTag === 'Info' || vbrTag === 'VBRI') {
+        
+        // Xing or VBRI indicates VBR
+        // Info indicates CBR (LAME writes Info tag for CBR files)
+        if (vbrTag === 'Xing' || vbrTag === 'VBRI') {
           result.bitrateType = 'VBR';
+        } else if (vbrTag === 'Info') {
+          result.bitrateType = 'CBR';
         } else {
           result.bitrateType = 'CBR';
         }

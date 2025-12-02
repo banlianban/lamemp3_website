@@ -222,7 +222,7 @@ export default function Hero() {
           )}
 
           {status === 'diagnosed' && (
-            <Diagnosis score={score} onOptimize={handleOptimize} diagnosisResult={diagnosisResult} />
+            <Diagnosis score={score} onOptimize={handleOptimize} onReset={handleReset} diagnosisResult={diagnosisResult} />
           )}
 
           {status === 'converting' && (
