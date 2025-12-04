@@ -1,0 +1,26 @@
+1. 创建了 GA4 埋点工具函数 (src/lib/analytics.ts)
+包含以下函数：
+trackFileSelectClick() - 点击选择文件
+trackFileSelectResult() - 选择文件结果
+trackFileScoreResult() - 评分文件结果（包含评分数值）
+trackConvertStart() - 点击开始转换
+trackConvertResult() - 文件转换结果
+所有函数支持 shijian_jieguo（事件结果）参数，评分函数还支持 shijian_shuzhi（事件数值）参数。
+2. 在 Hero 组件中集成了所有埋点
+文件选择相关埋点：
+点击选择文件按钮时触发 dianji_wenjian_xuanze
+文件选择成功/失败时触发 xuanze_wenjian_jieguo，包含 shijian_jieguo 参数
+诊断评分相关埋点：
+诊断完成后触发 pingfen_wenjian_jieguo
+包含 shijian_jieguo（成功/失败）和 shijian_shuzhi（评分分数 0-100）
+文件转换相关埋点：
+点击优化按钮时触发 zhuanhuan_wenjian_kaishi
+转换成功/失败时触发 zhuanhuan_wenjian_jieguo，包含 shijian_jieguo 参数
+埋点事件映射表
+埋点名称	事件标识	触发时机	参数
+点击选择文件	dianji_wenjian_xuanze	用户点击上传按钮或拖拽区域	无
+选择文件结果	xuanze_wenjian_jieguo	文件选择完成（成功/失败）	shijian_jieguo
+评分文件结果	pingfen_wenjian_jieguo	诊断完成	shijian_jieguo, shijian_shuzhi
+点击开始转换	zhuanhuan_wenjian_kaishi	用户点击"一键优化"按钮	无
+文件转换结果	zhuanhuan_wenjian_jieguo	转换完成（成功/失败）	shijian_jieguo
+所有埋点已集成，代码已通过 lint 检查。埋点会在用户操作时自动发送到 GA4。

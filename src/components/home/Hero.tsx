@@ -6,6 +6,13 @@ import { FileMusic, Loader2, CheckCircle, Download, Disc } from 'lucide-react';
 import { Button, Upload as AntUpload, message } from 'antd';
 import type { UploadFile, UploadProps } from 'antd/es/upload/interface';
 import Diagnosis from './Diagnosis';
+import {
+  trackFileSelectClick,
+  trackFileSelectResult,
+  trackFileScoreResult,
+  trackConvertStart,
+  trackConvertResult,
+} from '@/lib/analytics';
 
 const { Dragger } = AntUpload;
 
@@ -32,7 +39,12 @@ export default function Hero() {
       setFile(info.file.originFileObj);
     }
     if (status === 'done') {
+      // 埋点：选择文件结果 - 成功
+      trackFileSelectResult('success');
       startDiagnosis(info.file.originFileObj);
+    } else if (status === 'error') {
+      // 埋点：选择文件结果 - 失败
+      trackFileSelectResult('error', info.file.error?.message || '文件选择失败');
     }
   };
 
@@ -64,9 +76,14 @@ export default function Hero() {
       setDiagnosisResult(result);
       setStatus('diagnosed');
       
+      // 埋点：评分文件结果 - 成功
+      trackFileScoreResult(result.score, 'success');
+      
       console.log('诊断结果:', result);
-    } catch (error) {
+    } catch (error: any) {
       console.error('诊断错误:', error);
+      // 埋点：评分文件结果 - 失败
+      trackFileScoreResult(0, 'error', error?.message || '诊断失败');
       message.error(t('dropzone.errors.diagnosisFailed'));
       setStatus('idle');
     }
@@ -77,6 +94,9 @@ export default function Hero() {
       message.error(t('dropzone.errors.uploadFirst'));
       return;
     }
+
+    // 埋点：点击开始转换
+    trackConvertStart();
 
     setStatus('converting');
     
@@ -116,9 +136,15 @@ export default function Hero() {
       setConvertedFileName(fileName);
       setScore(100);
       setStatus('completed');
+      
+      // 埋点：文件转换结果 - 成功
+      trackConvertResult('success');
+      
       message.success(t('dropzone.success.optimizeComplete'));
     } catch (error: any) {
       console.error('转换错误:', error);
+      // 埋点：文件转换结果 - 失败
+      trackConvertResult('error', error?.message || '转换失败');
       message.error(error.message || t('dropzone.errors.convertFailed'));
       setStatus('diagnosed');
     }
@@ -189,6 +215,11 @@ export default function Hero() {
                 {...props} 
                 className="!border-0 !bg-transparent !p-0 [&>.ant-upload-drag]:!border-0 [&>.ant-upload-drag]:!bg-transparent group"
                 style={{ border: 'none', background: 'none' }}
+                beforeUpload={() => {
+                  // 埋点：点击选择文件
+                  trackFileSelectClick();
+                  return true;
+                }}
               >
                 <div className="p-8 rounded-3xl bg-slate-50 border-2 border-dashed border-neutral-200 group-hover:border-blue-500 transition-all duration-300 relative overflow-hidden">
                   <div className="relative z-10">
@@ -198,7 +229,15 @@ export default function Hero() {
                     <p className="text-base text-neutral-500 mb-8">
                       {t('dropzone.sub')}
                     </p>
-                    <Button type="primary" size="large" className="h-14 px-10 text-lg font-medium bg-neutral-900 text-white hover:bg-neutral-800 border-0 rounded-full transition-all">
+                    <Button 
+                      type="primary" 
+                      size="large" 
+                      className="h-14 px-10 text-lg font-medium bg-neutral-900 text-white hover:bg-neutral-800 border-0 rounded-full transition-all"
+                      onClick={() => {
+                        // 埋点：点击选择文件（按钮点击）
+                        trackFileSelectClick();
+                      }}
+                    >
                       {t('dropzone.button')}
                     </Button>
                     <p className="mt-6 text-xs text-neutral-400 uppercase tracking-widest">
