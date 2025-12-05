@@ -113,6 +113,14 @@ export default async function LocaleLayout({
     <html lang={locale} suppressHydrationWarning>
       <head>
         <StructuredData locale={locale} messages={messages as any} />
+        {/* 提前初始化 dataLayer，确保埋点函数可以立即使用 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+            `,
+          }}
+        />
       </head>
       <body className="antialiased">
         <GoogleAnalytics />

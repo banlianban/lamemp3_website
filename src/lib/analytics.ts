@@ -20,20 +20,32 @@ export function trackEvent(eventName: string, eventParams?: Record<string, any>)
     return;
   }
 
+  // 确保 dataLayer 存在
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+
   // 确保 gtag 函数存在
   if (typeof window.gtag === 'function') {
-    window.gtag('event', eventName, eventParams);
-    console.log(`[GA4] 事件已发送: ${eventName}`, eventParams);
-  } else {
-    // 如果 gtag 还未加载，将事件推入 dataLayer
-    if (!window.dataLayer) {
-      window.dataLayer = [];
+    try {
+      window.gtag('event', eventName, eventParams || {});
+      console.log(`[GA4] 事件已发送: ${eventName}`, eventParams);
+    } catch (error) {
+      console.error(`[GA4] 发送事件失败: ${eventName}`, error);
+      // 如果gtag调用失败，回退到dataLayer
+      window.dataLayer.push({
+        event: eventName,
+        ...(eventParams || {}),
+      });
+      console.log(`[GA4] 事件已推入 dataLayer (fallback): ${eventName}`, eventParams);
     }
+  } else {
+    // 如果 gtag 还未加载，将事件推入 dataLayer（GA4标准格式）
     window.dataLayer.push({
       event: eventName,
-      ...eventParams,
+      ...(eventParams || {}),
     });
-    console.log(`[GA4] 事件已推入 dataLayer: ${eventName}`, eventParams);
+    console.log(`[GA4] 事件已推入 dataLayer (gtag未就绪): ${eventName}`, eventParams);
   }
 }
 

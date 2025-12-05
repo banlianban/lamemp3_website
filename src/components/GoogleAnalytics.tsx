@@ -47,13 +47,15 @@ export default function GoogleAnalytics() {
           __html: `
             console.log('🚀 [GA4] Initializing dataLayer and gtag...');
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag(){window.dataLayer.push(arguments);}
+            window.gtag = gtag;
             gtag('js', new Date());
             console.log('🚀 [GA4] Configuring GA with ID: ${GA_MEASUREMENT_ID}');
             gtag('config', '${GA_MEASUREMENT_ID}', {
               page_path: window.location.pathname,
             });
             console.log('✅ [GA4] GA configured successfully for path:', window.location.pathname);
+            console.log('✅ [GA4] window.gtag is now available:', typeof window.gtag);
           `,
         }}
       />
