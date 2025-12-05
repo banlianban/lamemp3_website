@@ -3,6 +3,8 @@
  * 用于统一管理所有 GA4 事件追踪
  */
 
+import { clientLogger } from './logger';
+
 declare global {
   interface Window {
     dataLayer: any[];
@@ -29,15 +31,15 @@ export function trackEvent(eventName: string, eventParams?: Record<string, any>)
   if (typeof window.gtag === 'function') {
     try {
       window.gtag('event', eventName, eventParams || {});
-      console.log(`[GA4] 事件已发送: ${eventName}`, eventParams);
+      clientLogger.log(`[GA4] 事件已发送: ${eventName}`, eventParams);
     } catch (error) {
-      console.error(`[GA4] 发送事件失败: ${eventName}`, error);
+      clientLogger.error(`[GA4] 发送事件失败: ${eventName}`, error);
       // 如果gtag调用失败，回退到dataLayer
       window.dataLayer.push({
         event: eventName,
         ...(eventParams || {}),
       });
-      console.log(`[GA4] 事件已推入 dataLayer (fallback): ${eventName}`, eventParams);
+      clientLogger.log(`[GA4] 事件已推入 dataLayer (fallback): ${eventName}`, eventParams);
     }
   } else {
     // 如果 gtag 还未加载，将事件推入 dataLayer（GA4标准格式）
@@ -45,7 +47,7 @@ export function trackEvent(eventName: string, eventParams?: Record<string, any>)
       event: eventName,
       ...(eventParams || {}),
     });
-    console.log(`[GA4] 事件已推入 dataLayer (gtag未就绪): ${eventName}`, eventParams);
+    clientLogger.log(`[GA4] 事件已推入 dataLayer (gtag未就绪): ${eventName}`, eventParams);
   }
 }
 

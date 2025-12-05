@@ -13,6 +13,7 @@ import {
   trackConvertStart,
   trackConvertResult,
 } from '@/lib/analytics';
+import { clientLogger } from '@/lib/logger';
 
 const { Dragger } = AntUpload;
 
@@ -79,9 +80,9 @@ export default function Hero() {
       // 埋点：评分文件结果 - 成功
       trackFileScoreResult(result.score, 'success');
       
-      console.log('诊断结果:', result);
+      clientLogger.log('诊断结果:', result);
     } catch (error: any) {
-      console.error('诊断错误:', error);
+      clientLogger.error('诊断错误:', error);
       // 埋点：评分文件结果 - 失败
       trackFileScoreResult(0, 'error', error?.message || '诊断失败');
       message.error(t('dropzone.errors.diagnosisFailed'));
@@ -142,7 +143,7 @@ export default function Hero() {
       
       message.success(t('dropzone.success.optimizeComplete'));
     } catch (error: any) {
-      console.error('转换错误:', error);
+      clientLogger.error('转换错误:', error);
       // 埋点：文件转换结果 - 失败
       trackConvertResult('error', error?.message || '转换失败');
       message.error(error.message || t('dropzone.errors.convertFailed'));

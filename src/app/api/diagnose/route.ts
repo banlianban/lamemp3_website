@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { logger } from '@/lib/logger';
 
 export const runtime = 'nodejs';
 
@@ -32,11 +33,11 @@ export async function POST(request: NextRequest) {
     // 诊断结果
     const diagnosis = analyzeAudioFile(bytes, fileInfo);
     
-    console.log(`诊断完成: ${file.name}, 评分: ${diagnosis.score}`);
+    logger.log(`诊断完成: ${file.name}, 评分: ${diagnosis.score}`);
 
     return NextResponse.json(diagnosis);
   } catch (error: any) {
-    console.error('诊断过程出错:', error);
+    logger.error('诊断过程出错:', error);
     
     return NextResponse.json(
       { error: error.message || '诊断失败，请稍后重试' },
@@ -300,7 +301,7 @@ function analyzeMp3(bytes: Uint8Array) {
       }
     }
   } catch (error) {
-    console.error('MP3 分析出错:', error);
+    logger.error('MP3 分析出错:', error);
   }
 
   return result;

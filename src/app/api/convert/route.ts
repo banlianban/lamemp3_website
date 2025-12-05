@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { logger } from '@/lib/logger';
 
 export const runtime = 'nodejs';
 export const maxDuration = 300; // 5分钟超时
@@ -78,7 +79,7 @@ export async function POST(request: NextRequest) {
       apiFormData.append('force_convert', 'on');
     }
 
-    console.log(`转换请求: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB), 模式: ${mode}, 质量: ${quality}`);
+    logger.log(`转换请求: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)}MB), 模式: ${mode}, 质量: ${quality}`);
 
     // 调用外部 API
     const apiUrl = 'https://v5.chorusclip.com/convert';
@@ -95,9 +96,9 @@ export async function POST(request: NextRequest) {
       clearTimeout(timeout);
 
       if (!response.ok) {
-        console.error(`API 返回错误: ${response.status} ${response.statusText}`);
+        logger.error(`API 返回错误: ${response.status} ${response.statusText}`);
         const errorText = await response.text();
-        console.error('错误详情:', errorText);
+        logger.error('错误详情:', errorText);
         
         return NextResponse.json(
           { error: '音频转换失败，请稍后重试' },
@@ -109,7 +110,7 @@ export async function POST(request: NextRequest) {
       const arrayBuffer = await response.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
 
-      console.log(`转换成功: ${file.name} -> ${(buffer.length / 1024 / 1024).toFixed(2)}MB MP3`);
+      logger.log(`转换成功: ${file.name} -> ${(buffer.length / 1024 / 1024).toFixed(2)}MB MP3`);
 
       // 返回 MP3 文件
       const originalName = file.name.replace(/\.[^/.]+$/, '');
@@ -127,7 +128,7 @@ export async function POST(request: NextRequest) {
       clearTimeout(timeout);
       
       if (fetchError.name === 'AbortError') {
-        console.error('请求超时');
+        logger.error('请求超时');
         return NextResponse.json(
           { error: '转换超时，请尝试较小的文件或稍后重试' },
           { status: 504 }
@@ -137,7 +138,7 @@ export async function POST(request: NextRequest) {
       throw fetchError;
     }
   } catch (error: any) {
-    console.error('转换过程出错:', error);
+    logger.error('转换过程出错:', error);
     
     return NextResponse.json(
       { error: error.message || '服务器错误，请稍后重试' },
