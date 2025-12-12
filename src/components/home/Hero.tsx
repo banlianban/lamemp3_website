@@ -183,7 +183,7 @@ export default function Hero() {
     showUploadList: false,
     customRequest: customRequest,
     onChange: handleUpload,
-    accept: '.mp3,.flac,.wav,.ape,.m4a,.aac',
+    accept: '.aac,.ape,.flac,.m4a,.m4b,.mp3,.mp4,.ogg,.opus,.wav,.wave,.wma',
   };
 
   return (

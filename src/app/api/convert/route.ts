@@ -33,6 +33,8 @@ export async function POST(request: NextRequest) {
       'audio/x-ape',
       'audio/m4a',
       'audio/x-m4a',
+      'audio/m4b',
+      'audio/x-m4b',
       'audio/mp4',
       'audio/aac',
       'audio/aacp',
@@ -43,7 +45,7 @@ export async function POST(request: NextRequest) {
     ];
 
     const fileExtension = file.name.split('.').pop()?.toLowerCase();
-    const validExtensions = ['mp3', 'flac', 'wav', 'ape', 'm4a', 'aac', 'ogg', 'opus', 'wma'];
+    const validExtensions = ['mp3', 'flac', 'wav', 'wave', 'ape', 'm4a', 'm4b', 'mp4', 'aac', 'ogg', 'opus', 'wma'];
 
     if (!validTypes.includes(file.type) && !validExtensions.includes(fileExtension || '')) {
       return NextResponse.json(

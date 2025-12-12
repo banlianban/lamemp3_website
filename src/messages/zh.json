@@ -15,7 +15,7 @@
     "subtitle": "专为老旧车机、USB 播放器优化。一键修复'无法播放'、'读盘错误'、'乱码'问题。",
     "dropzone": {
       "main": "拖拽文件到这里 或 点击上传",
-      "sub": "支持 FLAC, WAV, APE, M4A, AAC 等无损转高兼容 MP3",
+      "sub": "支持所有主流音频格式（FLAC, WAV, M4A, OGG, WMA等）转高兼容 MP3",
       "privacy": "隐私保护：处理后自动删除",
       "button": "上传文件",
       "diagnosing": "正在进行全车机兼容性体检...",

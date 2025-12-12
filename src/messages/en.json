@@ -15,7 +15,7 @@
     "subtitle": "Optimized for legacy car units and USB players. Fix 'Playback Error', 'Reading Error', and 'Mojibake' issues with one click.",
     "dropzone": {
       "main": "Drop files here or click to upload",
-      "sub": "Supports FLAC, WAV, APE, M4A, AAC to high-compatibility MP3",
+      "sub": "Supports all major audio formats (FLAC, WAV, M4A, OGG, WMA, etc.) to high-compatibility MP3",
       "privacy": "Privacy: Files deleted after processing",
       "button": "Upload Files",
       "diagnosing": "Diagnosing compatibility...",
